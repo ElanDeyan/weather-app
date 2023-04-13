@@ -1,0 +1,38 @@
+@property --hue {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --saturation {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --lightness {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 100%;
+}
+
+@property --alpha {
+  syntax: "<alphavalue>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+}
+
+:root {
+  --hue: 0;
+  --saturation: 50%;
+  --lightness: 100%;
+  --alpha: 1;
+
+  --color: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+}

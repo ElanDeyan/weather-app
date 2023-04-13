@@ -1,0 +1,15 @@
+header {
+  .logo {
+    width: 4rem;
+    @supports (inline-size: 4rem) {
+      inline-size: 4rem;
+    }
+
+    &[data-actual-weather="false"] {
+      fill: hsl(0, 50%, 100%);
+      stroke: hsl(0, 50%, 0%);
+      stroke-width: 16px;
+      overflow: visible;
+    }
+  }
+}

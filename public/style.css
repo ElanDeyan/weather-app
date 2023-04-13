@@ -1,3 +1,305 @@
+@property --hue {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+@property --saturation {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+@property --lightness {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 100%;
+}
+@property --alpha {
+  syntax: "<alphavalue>";
+  inherits: true;
+  initial-value: 1;
+}
+@property --color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+}
+:root {
+  --hue: 0;
+  --saturation: 50%;
+  --lightness: 100%;
+  --alpha: 1;
+  --color: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+}
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans SemiBold"), local("NotoSans-SemiBold"), url("./assets/fonts/NotoSans-SemiBold.woff2") format("woff2"), url("./assets/fonts/NotoSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Regular"), local("NotoSans-Regular"), url("./assets/fonts/NotoSans-Regular.woff2") format("woff2"), url("./assets/fonts/NotoSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans SemiBold Italic"), local("NotoSans-SemiBoldItalic"), url("./assets/fonts/NotoSans-SemiBoldItalic.woff2") format("woff2"), url("./assets/fonts/NotoSans-SemiBoldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Thin Italic"), local("NotoSans-ThinItalic"), url("./assets/fonts/NotoSans-ThinItalic.woff2") format("woff2"), url("./assets/fonts/NotoSans-ThinItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Thin"), local("NotoSans-Thin"), url("./assets/fonts/NotoSans-Thin.woff2") format("woff2"), url("./assets/fonts/NotoSans-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Black"), local("NotoSans-Black"), url("./assets/fonts/NotoSans-Black.woff2") format("woff2"), url("./assets/fonts/NotoSans-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Black Italic"), local("NotoSans-BlackItalic"), url("./assets/fonts/NotoSans-BlackItalic.woff2") format("woff2"), url("./assets/fonts/NotoSans-BlackItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Bold"), local("NotoSans-Bold"), url("./assets/fonts/NotoSans-Bold.woff2") format("woff2"), url("./assets/fonts/NotoSans-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Bold Italic"), local("NotoSans-BoldItalic"), url("./assets/fonts/NotoSans-BoldItalic.woff2") format("woff2"), url("./assets/fonts/NotoSans-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans ExtraBold"), local("NotoSans-ExtraBold"), url("./assets/fonts/NotoSans-ExtraBold.woff2") format("woff2"), url("./assets/fonts/NotoSans-ExtraBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans ExtraBold Italic"), local("NotoSans-ExtraBoldItalic"), url("./assets/fonts/NotoSans-ExtraBoldItalic.woff2") format("woff2"), url("./assets/fonts/NotoSans-ExtraBoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans ExtraLight"), local("NotoSans-ExtraLight"), url("./assets/fonts/NotoSans-ExtraLight.woff2") format("woff2"), url("./assets/fonts/NotoSans-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans ExtraLight Italic"), local("NotoSans-ExtraLightItalic"), url("./assets/fonts/NotoSans-ExtraLightItalic.woff2") format("woff2"), url("./assets/fonts/NotoSans-ExtraLightItalic.woff") format("woff");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Italic"), local("NotoSans-Italic"), url("./assets/fonts/NotoSans-Italic.woff2") format("woff2"), url("./assets/fonts/NotoSans-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Light"), local("NotoSans-Light"), url("./assets/fonts/NotoSans-Light.woff2") format("woff2"), url("./assets/fonts/NotoSans-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans Light Italic"), local("NotoSans-LightItalic"), url("./assets/fonts/NotoSans-LightItalic.woff2") format("woff2"), url("./assets/fonts/NotoSans-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline-color: transparent;
+}
+
+img,
+picture,
+figure,
+video,
+audio,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+@supports (max-inline-size: 100%) {
+  img,
+  picture,
+  figure,
+  video,
+  audio,
+  svg {
+    max-inline-size: 100%;
+  }
+}
+@supports (block-size: auto) {
+  img,
+  picture,
+  figure,
+  video,
+  audio,
+  svg {
+    block-size: auto;
+  }
+}
+
+body {
+  min-height: 100vh;
+  font: inherit;
+  font-family: "Noto Sans", system-ui, sans-serif;
+  font-size: 100%;
+  overflow-x: hidden;
+}
+@supports (min-block-size: 100vh) {
+  body {
+    min-block-size: 100vh;
+  }
+  @supports (min-block-size: 100svb) {
+    body {
+      min-block-size: 100svb;
+    }
+  }
+}
+@supports (overflow-inline: hidden) {
+  body {
+    overflow-inline: hidden;
+  }
+}
+
+select,
+button {
+  all: unset;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.5em;
+  background-color: hsla(0, 100%, 100%, 0.1);
+}
+@supports (padding-inline: 1.5em) and (padding-block: 1em) {
+  header {
+    padding-inline: 1.5em;
+    padding-block: 1em;
+  }
+}
+
+main {
+  gap: 0.5rem;
+  padding: 0.75em;
+  text-align: center;
+}
+
+header .logo {
+  width: 4rem;
+}
+@supports (inline-size: 4rem) {
+  header .logo {
+    inline-size: 4rem;
+  }
+}
+header .logo[data-actual-weather=false] {
+  fill: hsl(0, 50%, 100%);
+  stroke: hsl(0, 50%, 0%);
+  stroke-width: 16px;
+  overflow: visible;
+}
+
+.select-lang {
+  border-radius: 5px;
+  border: 1px solid hsl(0, 50%, 0%);
+  padding: 0.25em;
+}
+
+.user-location button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: outline 150ms ease-in-out, transform 150ms ease-in-out;
+}
+.user-location button .icon {
+  inline-size: 2rem;
+}
+.user-location button:is(:hover, :focus-visible) {
+  outline: 2px solid hsl(0, 50%, 0%);
+  transform: scaleX(1.0125);
+}
+
+[data-window] {
+  --background: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+@supports (inline-size: 100%) {
+  [data-window] {
+    inline-size: 100%;
+  }
+}
+
+[data-window=alert] {
+  --hue: 0deg;
+  --saturation: 100%;
+  --lightness: 50%;
+  --alpha: .5;
+  background-color: var(--background);
+}
 
 /*# sourceMappingURL=style.css.map */

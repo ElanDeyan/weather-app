@@ -1,2 +1,4 @@
-var myName = "Elan";
-console.log(myName);
+var userLocation = document.querySelector(".user-location button");
+userLocation.addEventListener("click", function (e) {
+    console.log(userLocation);
+});

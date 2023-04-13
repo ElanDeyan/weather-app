@@ -1,0 +1,8 @@
+[data-window="alert"] {
+  --hue: 0deg;
+  --saturation: 100%;
+  --lightness: 50%;
+  --alpha: .5;
+
+  background-color: var(--background);
+}

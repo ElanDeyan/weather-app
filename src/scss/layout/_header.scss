@@ -1,0 +1,12 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.5em;
+  background-color: hsla(0deg, 100%, 100%, 0.1);
+
+  @supports (padding-inline: 1.5em) and (padding-block: 1em) {
+    padding-inline: 1.5em;
+    padding-block: 1em;
+  }
+}

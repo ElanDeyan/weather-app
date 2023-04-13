@@ -1,0 +1,8 @@
+@use '../utils/placeholders';
+
+main {
+  @extend %flex-column-center;
+  gap: .5rem;
+  padding: .75em;
+  text-align: center;
+}

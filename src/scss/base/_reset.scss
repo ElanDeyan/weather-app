@@ -1,0 +1,37 @@
+@use "../utils/mixins" as mixin;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline-color: transparent;
+    font: inherit;
+}
+
+img,
+picture,
+figure,
+video,
+audio,
+svg {
+    display: block;
+    @include mixin.logicalSupport("max-width", "100%", "property");
+    @include mixin.logicalSupport("height", "auto", "property");
+}
+
+body {
+    @include mixin.logicalSupport("min-height", "100vh", "property");
+    font-family: "Noto Sans", system-ui, sans-serif;
+    font-size: 100%;
+    @include mixin.logicalSupport("overflow-x", "hidden", "property");
+    @supports (min-block-size: 100svb) {
+        min-block-size: 100svb;
+    }
+}
+
+select,
+button {
+    all: unset;
+}

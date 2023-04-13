@@ -1,0 +1,11 @@
+@use '../../utils/mixins' as mixin;
+
+[data-window] {
+  --background: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+  
+  @include mixin.flex-container($gap: .5rem);
+  flex: 1;
+  @include mixin.logicalSupport("width","100%","property");
+  padding: .5em;
+  border-radius: 5px;
+}
