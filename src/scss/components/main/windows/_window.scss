@@ -1,0 +1,96 @@
+@use '../../../utils/mixins' as mixin;
+@use '../../../utils/placeholders';
+
+.window {
+  @extend %flex-column-center;
+  gap: .5rem;
+  @include mixin.logicalSupport('width', 100%, 'property');
+  padding: 1em;
+  border-radius: 15px;
+
+  @include mixin.logicalSupport('overflow-x', hidden, 'property');
+
+  --hue: 200deg;
+  --saturation: 5%;
+  --lightness: 50%;
+  --alpha: .5;
+
+  --color: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+
+  background-color: var(--color);
+
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .25rem;
+  }
+
+  .title {
+    line-height: 1.1;
+    font-size: 1.25rem;
+  }
+
+  .info {
+    @include mixin.logicalSupport('width', 1rem, 'property');
+  }
+
+  .icon {
+    @include mixin.logicalSupport('width', 2rem, 'property');
+  }
+
+  &[data-content="real-time"] {
+    .actual-weather {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      --size: 2rem;
+      .weather {
+        @include mixin.logicalSupport('width', var(--size), 'property');
+      }
+      .temperature {
+        font-size: var(--size);
+        font-weight: bold;
+  
+        &::after {
+          content: '\00B0 C';
+          vertical-align: super;
+          font-size: calc(var(--size) / 2);
+        }
+      }
+    }
+    .other-data {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+
+      @include mixin.logicalSupport('width', 100%, 'property');
+      @include mixin.logicalSupport('overflow-x', scroll, 'property');
+
+
+      .window {
+        display: grid;
+        grid-template-areas:
+          "icon measure"
+          "icon value"
+        ;
+        gap: .125rem;
+      }
+
+      .icon {
+        grid-area: icon;
+      }
+
+      .measure {
+        font-size: var(--size, .75rem);
+        grid-area: measure;
+      }
+
+      .value {
+        grid-area: value;
+      }
+    }
+  }
+
+}

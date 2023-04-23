@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @property --hue {
   syntax: "<angle>";
   inherits: true;
@@ -31,7 +32,7 @@
   --color: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
 }
 
-main {
+.window, main, main .windows {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -192,7 +193,6 @@ svg {
 
 body {
   min-height: 100vh;
-  font: inherit;
   font-family: "Noto Sans", system-ui, sans-serif;
   font-size: 100%;
   overflow-x: hidden;
@@ -201,15 +201,20 @@ body {
   body {
     min-block-size: 100vh;
   }
-  @supports (min-block-size: 100svb) {
-    body {
-      min-block-size: 100svb;
-    }
+}
+@supports (font-size: clamp(1rem, 0.25rem + 0.75vw, 2.5rem)) {
+  body {
+    font-size: clamp(1rem, 0.25rem + 0.75vw, 2.5rem);
   }
 }
 @supports (overflow-inline: hidden) {
   body {
     overflow-inline: hidden;
+  }
+}
+@supports (min-block-size: 100svb) {
+  body {
+    min-block-size: 100svb;
   }
 }
 
@@ -224,6 +229,7 @@ header {
   align-items: center;
   padding: 1em 1.5em;
   background-color: hsla(0, 100%, 100%, 0.1);
+  box-shadow: 0 0px 10px black;
 }
 @supports (padding-inline: 1.5em) and (padding-block: 1em) {
   header {
@@ -231,11 +237,41 @@ header {
     padding-block: 1em;
   }
 }
+@supports (backdrop-filter: blur(5px)) {
+  header {
+    backdrop-filter: blur(5px);
+  }
+}
 
 main {
   gap: 0.5rem;
   padding: 0.75em;
   text-align: center;
+}
+main .mini-menu {
+  --content-height: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: 1em 0.5em;
+  width: 100%;
+  font-size: var(--content-height);
+}
+@supports (inline-size: 100%) {
+  main .mini-menu {
+    inline-size: 100%;
+  }
+}
+main .windows {
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1em;
+}
+@supports (inline-size: 100%) {
+  main .windows {
+    inline-size: 100%;
+  }
 }
 
 header .logo {
@@ -253,10 +289,101 @@ header .logo[data-actual-weather=false] {
   overflow: visible;
 }
 
-.select-lang {
+.language-select button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   border-radius: 5px;
-  border: 1px solid hsl(0, 50%, 0%);
   padding: 0.25em;
+}
+.language-select button:is(:focus-visible, :hover) {
+  outline: 1px solid black;
+}
+.language-select button .icon {
+  width: 2rem;
+}
+@supports (inline-size: 2rem) {
+  .language-select button .icon {
+    inline-size: 2rem;
+  }
+}
+.language-select button .lang {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+main .title {
+  font-size: 1.5rem;
+}
+
+.quick-actions {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.quick-actions button {
+  --hue: 280deg;
+  --saturation: 100%;
+  --lightness: 50%;
+  --alpha: .5;
+  --color: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+  padding: 0.25em;
+  border-radius: 5px;
+  background-color: var(--color);
+}
+.quick-actions button:is(:hover, :focus-visible) {
+  outline: 2px solid var(--color);
+}
+.quick-actions button[data-btn-type=alert] {
+  --hue: 0deg;
+  position: relative;
+  isolation: isolate;
+}
+.quick-actions button[data-btn-type=alert]::after {
+  content: attr(data-alerts);
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 100%;
+  color: white;
+  font-weight: bold;
+  line-height: 1;
+  position: absolute;
+  inset: -0.5rem -0.375rem auto auto;
+  --alpha: 1;
+  background-color: var(--color);
+}
+@supports (inline-size: 1.25rem) {
+  .quick-actions button[data-btn-type=alert]::after {
+    inline-size: 1.25rem;
+  }
+}
+@supports (block-size: 1.25rem) {
+  .quick-actions button[data-btn-type=alert]::after {
+    block-size: 1.25rem;
+  }
+}
+@supports (aspect-ratio: 1) {
+  .quick-actions button[data-btn-type=alert]::after {
+    aspect-ratio: 1;
+  }
+}
+.quick-actions button[data-btn-type=info] {
+  --saturation: 0%;
+}
+.quick-actions button[data-btn-type=config] {
+  --hue: 200deg;
+}
+.quick-actions button .icon {
+  --content-height: 1.25rem;
+  width: var(--content-height);
+}
+@supports (inline-size: var(--content-height)) {
+  .quick-actions button .icon {
+    inline-size: var(--content-height);
+  }
 }
 
 .user-location button {
@@ -269,11 +396,127 @@ header .logo[data-actual-weather=false] {
   transition: outline 150ms ease-in-out, transform 150ms ease-in-out;
 }
 .user-location button .icon {
-  inline-size: 2rem;
+  --content-height: 1.125rem;
+  width: var(--content-height);
+}
+@supports (inline-size: var(--content-height)) {
+  .user-location button .icon {
+    inline-size: var(--content-height);
+  }
 }
 .user-location button:is(:hover, :focus-visible) {
   outline: 2px solid hsl(0, 50%, 0%);
   transform: scaleX(1.0125);
+}
+.user-location .location {
+  --content-height: .75rem;
+  font-size: var(--content-height);
+}
+
+.window {
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1em;
+  border-radius: 15px;
+  overflow-x: hidden;
+  --hue: 200deg;
+  --saturation: 5%;
+  --lightness: 50%;
+  --alpha: .5;
+  --color: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+  background-color: var(--color);
+}
+@supports (inline-size: 100%) {
+  .window {
+    inline-size: 100%;
+  }
+}
+@supports (overflow-inline: hidden) {
+  .window {
+    overflow-inline: hidden;
+  }
+}
+.window .heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+.window .title {
+  line-height: 1.1;
+  font-size: 1.25rem;
+}
+.window .info {
+  width: 1rem;
+}
+@supports (inline-size: 1rem) {
+  .window .info {
+    inline-size: 1rem;
+  }
+}
+.window .icon {
+  width: 2rem;
+}
+@supports (inline-size: 2rem) {
+  .window .icon {
+    inline-size: 2rem;
+  }
+}
+.window[data-content=real-time] .actual-weather {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  --size: 2rem;
+}
+.window[data-content=real-time] .actual-weather .weather {
+  width: var(--size);
+}
+@supports (inline-size: var(--size)) {
+  .window[data-content=real-time] .actual-weather .weather {
+    inline-size: var(--size);
+  }
+}
+.window[data-content=real-time] .actual-weather .temperature {
+  font-size: var(--size);
+  font-weight: bold;
+}
+.window[data-content=real-time] .actual-weather .temperature::after {
+  content: "°C";
+  vertical-align: super;
+  font-size: calc(var(--size) / 2);
+}
+.window[data-content=real-time] .other-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  overflow-x: scroll;
+}
+@supports (inline-size: 100%) {
+  .window[data-content=real-time] .other-data {
+    inline-size: 100%;
+  }
+}
+@supports (overflow-inline: scroll) {
+  .window[data-content=real-time] .other-data {
+    overflow-inline: scroll;
+  }
+}
+.window[data-content=real-time] .other-data .window {
+  display: grid;
+  grid-template-areas: "icon measure" "icon value";
+  gap: 0.125rem;
+}
+.window[data-content=real-time] .other-data .icon {
+  grid-area: icon;
+}
+.window[data-content=real-time] .other-data .measure {
+  font-size: var(--size, 0.75rem);
+  grid-area: measure;
+}
+.window[data-content=real-time] .other-data .value {
+  grid-area: value;
 }
 
 [data-window] {

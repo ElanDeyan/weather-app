@@ -1,3 +1,5 @@
-@use 'user-location';
+@use 'title';
+@forward 'mini-menu';
+@forward 'windows'; 
 @use 'window';
 @use 'alert';

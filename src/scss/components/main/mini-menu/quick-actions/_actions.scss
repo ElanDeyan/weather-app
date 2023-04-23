@@ -1,0 +1,56 @@
+@use '../../../../utils/mixins' as mixin;
+
+.quick-actions {
+  button {
+    --hue: 280deg;
+    --saturation: 100%;
+    --lightness: 50%;
+    --alpha: .5;
+    --color: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+    
+    padding: .25em;
+    border-radius: 5px;
+    
+    background-color: var(--color);
+
+    &:is(:hover, :focus-visible) {
+      outline: 2px solid var(--color);
+    }
+
+    &[data-btn-type="alert"] {
+      --hue: 0deg;
+      position: relative;
+      isolation: isolate;
+
+      &::after {
+        content: attr(data-alerts);
+        @include mixin.logicalSupport('width', 1.25rem, 'property');
+        @include mixin.logicalSupport('height', 1.25rem, 'property');
+        @supports (aspect-ratio: 1) {
+          aspect-ratio: 1;
+        }
+        border-radius: 100%;
+        color: white;
+        font-weight: bold;
+        line-height: 1;
+        position: absolute;
+        inset: -0.5rem -0.375rem auto auto;
+        --alpha: 1;
+        background-color: var(--color);
+      }
+    }
+
+    &[data-btn-type="info"] {
+      --saturation: 0%;
+    }
+
+    &[data-btn-type="config"] {
+      --hue: 200deg;
+    }
+
+    .icon {
+      --content-height: 1.25rem;
+      @include mixin.logicalSupport('width', var(--content-height), 'property');
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@use '../../../../utils/mixins' as mixin;
+
 .user-location {
     button {
         display: flex;
@@ -15,12 +17,18 @@
           ;
 
         .icon {
-            inline-size: 2rem;
+          --content-height: 1.125rem;
+            @include mixin.logicalSupport('width', var(--content-height), 'property');
         }
 
         &:is(:hover, :focus-visible) {
           outline: 2px solid hsl(0, 50%, 0%);
           transform: scaleX(1.0125);
         }
+    }
+
+    .location {
+      --content-height: .75rem;
+      font-size: var(--content-height);
     }
 }

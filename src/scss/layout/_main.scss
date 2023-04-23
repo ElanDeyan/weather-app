@@ -1,8 +1,27 @@
 @use '../utils/placeholders';
+@use '../utils/mixins' as mixin;
 
 main {
   @extend %flex-column-center;
   gap: .5rem;
   padding: .75em;
   text-align: center;
+
+  .mini-menu {
+    --content-height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .25rem;
+    padding: 1em .5em;
+    @include mixin.logicalSupport('width', 100%, 'property');
+    font-size: var(--content-height);
+  }
+
+  .windows {
+    @extend %flex-column-center;
+    gap: .5rem;
+    @include mixin.logicalSupport('width', 100%, 'property');
+    padding: 1em;
+  }
 }
