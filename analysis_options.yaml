@@ -2,11 +2,60 @@ include: package:lint/strict.yaml
 
 analyzer:
   language:
-    - strict-casts: true
-    - strict-inference: true
-    - strict-raw-types: true
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  plugins:
+    - architecture_linter
 
 dart_code_linter:
   extends:
     - package:dart_code_linter/presets/all.yaml
     - package:dart_code_linter/presets/metrics_recommended.yaml
+
+architecture_linter:
+  excludes:
+    - "**.g.dart"
+  lint_severity: error
+
+  layers:
+    - &core
+      name: "Core"
+      path: (core)
+    - &data
+      name: "Data"
+      path: (core/data)
+    - &models
+      name: "Models"
+      path: (core/data/models)
+    - &repositories
+      name: "Repositories"
+      path: (core/data/repositories)
+    - &datasources
+      name: "Data Sources"
+      path: (core/data/data_sources)
+    - &network
+      name: "Network"
+      path: (core/network)
+    - &utils
+      name: "Utils"
+      path: (core/utils)
+    - &services
+      name: "Services"
+      path: (core/services)
+    - &ui
+      name: "UI"
+      path: (ui)
+    - &screens
+      name: "Screens"
+      path: (ui/screens)
+    - &widgets
+      name: "Widgets"
+      path: (ui/widgets)
+
+  banned_imports:
+    - layer: *core
+      banned:
+        - *ui
+        - *screens
+        - *widgets
